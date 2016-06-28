@@ -1,0 +1,33 @@
+h1 {
+  color:crimson;
+  text-align: left;
+  font-family: fantasy, sans-serif, Arial;
+  font-size: 40px;
+  padding-left: 30px;
+}
+
+body {
+  font-size: 20px;
+  background-image: url("https://webster.cs.washington.edu/images/silverware.jpg");
+}
+
+div p {
+  color: darkslateblue;
+  text-align: left;
+  font-family: sans-serif, Arial, serif;
+  padding: 20px;
+  margin: auto;
+}
+
+div img {
+  padding-left: 80px;
+  margin-bottom: 50px;
+}
+
+a {
+  font-size: 30px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+
