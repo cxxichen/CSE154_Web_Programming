@@ -6,12 +6,22 @@ body {
 	border: 0pt;
 }
 
-#banner {
+#banner_top {
 	text-align: center;
 	background-image: url("https://webster.cs.washington.edu/images/rancidbannerbg.png");
 	height: 50px;
 	position: fixed;
 	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+#banner_bottom {
+	text-align: center;
+	background-image: url("https://webster.cs.washington.edu/images/rancidbannerbg.png");
+	height: 50px;
+	position: fixed;
+	bottom:0px;
 	left: 0px;
 	right: 0px;
 }
@@ -34,6 +44,7 @@ h1 {
 	box-shadow: 5px 5px 5px gray;
 	background-color: #EEEEEE;
 	overflow: hidden;
+	margin-bottom: 60px;
 }
 
 #left {
@@ -125,6 +136,7 @@ ul {
 	position: fixed;
 	right: 0px;
 	bottom: 0px;
+	margin-bottom: 50px;
 }
 
 .validator {
