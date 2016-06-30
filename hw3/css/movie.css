@@ -1,0 +1,140 @@
+body {
+	background-image: url('https://webster.cs.washington.edu/images/moviebg.png');
+	font-size: 10pt;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0pt;
+	border: 0pt;
+}
+
+#banner {
+	text-align: center;
+	background-image: url("https://webster.cs.washington.edu/images/rancidbannerbg.png");
+	height: 50px;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+h1 {
+	text-align: center;
+	font-size: 24pt;
+	font-weight: bold;
+	font-family: Georgia, Times New Roman, sans-serif;
+	text-shadow: 3px 3px #999999;
+	margin-top: 72px;
+}
+
+#content {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 5px;
+	border-radius: 20px;
+	box-shadow: 5px 5px 5px gray;
+	background-color: #EEEEEE;
+	overflow: hidden;
+}
+
+#left {
+	width: 550px;
+}
+
+#right {
+	width: 250px;
+	float: right;
+	background-color: #A2B964;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#rate {
+	background-image: url('https://webster.cs.washington.edu/images/rottenlargebg.png');
+	background-repeat: repeat-x;
+	height: 83px;
+}
+
+
+#rate > img {
+	vertical-align: bottom;
+}
+
+#score {
+	font-size: 48pt;
+	color: red;
+	font-weight: bold;
+}
+
+.reviews {
+	width: 47%;
+	float: left;
+	padding-left: 2%;
+}
+
+.review {
+	font-size: 10pt;
+	background-color: #FFFFFF;
+	border: 2px solid #CCCCCC;
+	border-radius: 20px;
+	font-family: Georgia, Times New Roman, sans-serif;
+	padding: 8px;
+	overflow: hidden;
+}
+
+.review > img {
+	margin-right: 5px;
+	float: left;
+}
+
+.reviewer > span {
+	font-style: italic;
+}
+
+.reviewer > img{
+	margin-right: 5px;
+	float: left;
+}
+
+.reviewer {
+	margin-bottom: 20pt;
+}
+
+dl {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+dt {
+	margin-top: 10pt;
+	font-weight: bold;
+}
+
+ul {
+	list-style: none;
+	padding-left: 0pt;
+}
+
+#page {
+	background-color: #A2B964;
+	clear: right;
+	padding: 5px;
+	margin: 0px;
+	text-align: center;
+}
+
+#links {
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+}
+
+.validator {
+	opacity: 0.5;
+}
+
+.validator:hover {
+	opacity: 1.0;
+}
+
+#text {
+	color: white;
+}
