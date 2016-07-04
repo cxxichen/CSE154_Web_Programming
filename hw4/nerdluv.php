@@ -14,7 +14,7 @@
 		
 		<!-- instructor-provided CSS and JavaScript links; do not modify -->
 		<link href="https://webster.cs.washington.edu/images/nerdluv/heart.gif" type="image/gif" rel="shortcut icon" />
-		<link href="https://webster.cs.washington.edu/css/nerdluv.css" type="text/css" rel="stylesheet" />
+		<link href="nerdluv.css" type="text/css" rel="stylesheet" />
 	</head>
 
 	<body>
