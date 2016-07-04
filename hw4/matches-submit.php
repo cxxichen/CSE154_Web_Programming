@@ -1,52 +1,78 @@
-<!DOCTYPE html>
-<html>
-	<!--
-	CSE 154, Homework 4 (NerdLuv)
-	This provided file is the front page that links to two of the files
-	you are going to write, signup.php and matches.php.
-	You can modify this file as necessary to move redundant code out to common.php.
-	-->
-	
-	<head>
-		<title>NerdLuv</title>
-		
-		<meta charset="utf-8" />
-		
-		<!-- instructor-provided CSS and JavaScript links; do not modify -->
-		<link href="https://webster.cs.washington.edu/images/nerdluv/heart.gif" type="image/gif" rel="shortcut icon" />
-		<link href="nerdluv.css" type="text/css" rel="stylesheet" />
-	</head>
+<?php 
+	include("common.php");
+	top();
+	$name_search = $_GET["name"];
+?>
 
-	<body>
-		<div id="bannerarea">
-			<img src="https://webster.cs.washington.edu/images/nerdluv/nerdluv.png" alt="banner logo" /> <br />
-			where meek geeks meet
-		</div>
+	<h1>Matches for <?= $name_search ?></h1>
+		<?php
+			$data = file("singles.txt");
+			$info = array();
+			foreach($data as $item){
+				list($name, $gender, $age, $personality, $os, $min_age, $max_age) = explode(",", $item);
+				if($name == $name_search){
+					$info = array("name"=>$name, "gender"=>$gender, "age"=>$age, "personality"=>$personality, "os"=>$os, "min_age"=>$min_age, "max_age"=>$max_age);
+				}
+			}
 
-
-
-		<div>
-			<p>
-				This page is for single nerds to meet and date each other!  Type in your personal information and wait for the nerdly luv to begin!  Thank you for using our site.
-			</p>
+			foreach($data as $item){
+				if( !isset($personality) ) $personality = 'NULL' ;
+				list($name, $gender, $age, $personality, $os, $min_age, $max_age) = explode(",", $item);
+				$gender_match = gender($gender, $info["gender"]);
+				$age_match_1 = age($age, $info["min_age"], $info["max_age"]);
+				$age_match_2 = age($info["age"], $min_age, $max_age);
+				$os_match = os($os, $info["os"]);
+				$personality_match = personality($personality, $info["personality"]);
+				$match = $gender_match && $age_match_1 && $age_match_2 && $os_match && $personality_match;
 			
-			<p>
-				Results and page (C) Copyright NerdLuv Inc.
-			</p>
-			
-			<ul>
-				<li>
-					<a href="nerdluv.php">
-						<img src="https://webster.cs.washington.edu/images/nerdluv/back.gif" alt="icon" />
-						Back to front page
-					</a>
-				</li>
-			</ul>
-		</div>
+				if($match) { 
+		?>
+			<div class="match">
+				<p><img src="https://webster.cs.washington.edu/images/nerdluv/user.jpg " alt="user" /><?= $name ?></p>
+				<ul>
+					<li><strong>gender:</strong><?= $gender ?></li>
+					<li><strong>age:</strong><?= $age ?></li>
+					<li><strong>type:</strong><?= $personality ?></li>
+					<li><strong>os:</strong><?= $os ?></li>
+				</ul>
+			</div>
+		<?php
+				}
+			}
 
-		<div id="w3c">
-			<a href="https://webster.cs.washington.edu/validate-html.php"><img src="https://webster.cs.washington.edu/images/w3c-html.png" alt="Valid HTML" /></a>
-			<a href="https://webster.cs.washington.edu/validate-css.php"><img src="https://webster.cs.washington.edu/images/w3c-css.png" alt="Valid CSS" /></a>
-		</div>
-	</body>
-</html>
+		function gender($gender1, $gender2){
+			if($gender1 != $gender2) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function age($age, $min_age, $max_age){
+			if($age >= $min_age && $age <= $max_age) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function os($os1, $os2){
+			if($os1 == $os2) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		function personality($personality1, $personality2){
+			if(!empty($personality1)){
+				if($personality1[0] != $personality2[0] && $personality1[1] != $personality2[1] 
+				   && $personality1[2] != $personality2[2] && $personality1[3] != $personality2[3]) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+	buttom();
+?>
