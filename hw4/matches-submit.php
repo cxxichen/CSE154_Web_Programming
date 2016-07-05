@@ -16,7 +16,8 @@
 			}
 
 			foreach($data as $item){
-				if( !isset($personality) ) $personality = 'NULL' ;
+				if( !isset($personality) ) 
+					$personality = 'NULL' ;
 				list($name, $gender, $age, $personality, $os, $min_age, $max_age) = explode(",", $item);
 				$gender_match = gender($gender, $info["gender"]);
 				$age_match_1 = age($age, $info["min_age"], $info["max_age"]);
