@@ -4,7 +4,7 @@
 ?>
 	<form action="signup-submit.php" method="post">
 		<fieldset>
-			<legend>New User Signyp:</legend>
+			<legend>New User Signup:</legend>
 			<div>
 				<strong>Name:</strong>
 				<input type="text" name="name" size="16" />

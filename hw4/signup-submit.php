@@ -8,21 +8,43 @@
 	$os = $_POST["favorite_OS"];
 	$min_age = $_POST["min_age"];
 	$max_age = $_POST["max_age"];
-
-	$info_input = [$name, $gender, $age, $personality_type, $os, $min_age, $max_age];
 	
-	//checked the input data is valid
-	$name_error = ($name == '');
-	$gender_error = ($gender != 'M' && $gender != 'F');
-	$age_error = ($age < 0 || $age > 99);
-	$os_error = ($os != 'Windows' && $os != 'Mac OS' && $os != 'Linux');
-	$min_max_error = ($min_age < 0 || $min_age > 100 || $max_age < 0 || $max_age > 100);
-	$gender_check_error = ($gender == '');
-	$type_error = (($personality_type[0] != 'I' && $personality_type[0] != 'E')
-				  ||($personality_type[1] != 'N' && $personality_type[1] != 'S')
-				  ||($personality_type[2] != 'F' && $personality_type[2] != 'T')
-				  ||($personality_type[3] != 'J' && $personality_type[3] != 'P'));
-	if($name_error || $gender_error || $age_error || $os_error || $min_max_error || $gender_check_error || $type_error) { ?>
+	//form validation
+	$error = false;
+	if(empty($name)){
+		$error = true;
+	}
+
+	if($gender != 'M' && $gender != 'F'){
+		$error = true;
+	}
+
+	if($age < 0 || $age > 99){
+		$error = true;
+	}
+
+	if($os != 'Windows' && $os != 'Mac OS' && $os != 'Linux'){
+		$error = true;
+	}
+
+	if(($min_age < 0) || ($min_age > 99) || ($max_age < 0) || ($max_age > 99) || ($min_age > $max_age)){
+		$error = true;
+	}
+
+	#seeking gender check
+	#	to do
+	#
+	#
+
+	if(strlen($personality_type) != 4 ||
+	  		($personality_type[0] != 'I' && $personality_type[0] != 'E') ||
+	  		($personality_type[1] != 'N' && $personality_type[1] != 'S') ||
+	  		($personality_type[2] != 'F' && $personality_type[2] != 'T') ||
+	  		($personality_type[3] != 'J' && $personality_type[3] != 'P')) {
+		$error = true;
+	}
+
+	if($error){ ?>
 
 		<div>
 			<p><strong>Error! Invalid data.</strong></p>
@@ -32,18 +54,40 @@
 	<?php
 		buttom();
 		exit();
-	} 
+	}
+
+	//check whether the person has already in the file
+	$resubmit_error = false;
+	$data = file("singles.txt");
+	foreach($data as $item){
+		$user_info = explode(",", $item);
+		if($user_info[0] == $name){
+			$resubmit_error = true;
+		}
+	}
 	
-	file_put_contents("singles.txt",
-					  $name . "," . $gender . "," . $age . "," . $personality_type. "," . $os. "," . $min_age . "," . $max_age. "\n",
-					  FILE_APPEND);
-?>
-	<div>
-		<p><strong>Thank you!</strong></p>
-		<p>Welcome to NerdLuv, Marty Stepp!</p>
-		<p>Now <a href="matches.php">log in to see your matches</a></p>
-	</div>
+	if($resubmit_error){ ?>
+
+		<div>
+			<p><strong>Error!</strong></p>
+			<p>We&#39re sorry. You have already submitted your information.</p>
+		</div>
 	
-<?php
-	buttom();
-?>
+	<?php
+		buttom();
+		exit();
+	} else {
+		file_put_contents("singles.txt",
+					  	$name . "," . $gender . "," . $age . "," . $personality_type. "," . $os. "," . $min_age . "," . $max_age. "\n",
+					  	FILE_APPEND);
+	?>
+
+		<div>
+			<p><strong>Thank you!</strong></p>
+			<p>Welcome to NerdLuv, Marty Stepp!</p>
+			<p>Now <a href="matches.php">log in to see your matches</a></p>
+		</div>
+	
+	<?php
+		buttom();
+	}?>
