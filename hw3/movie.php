@@ -47,7 +47,7 @@
 			</title>
 			<meta charset="utf-8" />
 			<link rel="stylesheet" type="text/css" href="css/movie.css" />
-			<link href="https://webster.cs.washington.edu/images/<?= $fresh ?>.gif" type="image/gif" rel="icon" />
+			<link href="https://webster.cs.washington.edu/images/<?= $fresh ?>.gif" type="image/gif" rel="shortcut icon" />
 		</head>
 
 		<body>
