@@ -7,11 +7,12 @@
 		header("Location: start.php");
 		die();
 	}
-	
+
 	$name = $_SESSION["name"];
 	$password = $_SESSION["password"];
 	$time = $_COOKIE["time"];
 ?>
+
 	<div id="main">
 		<h2><?= $name ?>'s To-Do List</h2>
 
@@ -23,22 +24,32 @@
 					chmod($filename, 0777);
 				} else {
 					$list = file($filename, FILE_IGNORE_NEW_LINES); 
+					for($i = 0; $i < count($list); $i++) { 
+			?>
+			
+						<li>
+							<form action="submit.php" method="post">
+								<input type="hidden" name="action" value="delete" />
+								<input type="hidden" name="index" value="<?= $i ?>" />
+								<input type="submit" value="Delete" />
+							</form>
+							<?= htmlspecialchars($list[$i]) ?>
+						</li>	
+			
+			<?php
+					} 
 				}
 			
-				for($i = 0; $i < count($list); $i++) { 
+				if(isset($_SESSION["error"])){
 			?>
-				<li>
-					<form action="submit.php" method="post">
-						<input type="hidden" name="action" value="delete" />
-						<input type="hidden" name="index" value="<?= $i ?>" />
-						<input type="submit" value="Delete" />
-					</form>
-					<?= htmlspecialchars($list[$i]) ?>
-				</li>	
+				<p id="error">
+					<?= $_SESSION["error"] ?>
+				</p>
 			<?php
-				} 
+				unset($_SESSION["error"]);
+				}
 			?>
-
+			
 			<li>
 				<form action="submit.php" method="post">
 					<input type="hidden" name="action" value="add" />
